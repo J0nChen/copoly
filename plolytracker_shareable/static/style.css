@@ -1,0 +1,427 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --text-main: #f0f0f5;
+    --text-muted: #a0a0ab;
+    --accent-blue: #3b82f6;
+    --accent-blue-glow: rgba(59, 130, 246, 0.4);
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+    top: -150px;
+    left: -150px;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+    bottom: -250px;
+    right: -150px;
+    animation: float 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(50px) scale(1.1);
+    }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-green);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.badge {
+    font-size: 0.7rem;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    padding: 2px 6px;
+    border-radius: 4px;
+    vertical-align: super;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    flex: 0 1 500px;
+}
+
+input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--card-border);
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+}
+
+button {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px var(--accent-blue-glow);
+}
+
+.status-bar {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    margin-bottom: 2rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.trades-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.stats {
+    font-size: 0.9rem;
+    background: var(--card-bg);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+}
+
+#trade-count {
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    flex: 1;
+    min-height: 0;
+}
+
+.feed-column,
+.positions-column {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.trades-container,
+.positions-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 10px;
+    padding-bottom: 2rem;
+}
+
+/* Custom Scrollbar */
+.trades-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.trades-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.trades-container::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 10px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border: 1px dashed var(--card-border);
+    border-radius: 12px;
+}
+
+.trade-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 80px 48px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.trade-card:hover {
+    transform: translateY(0) scale(1.01);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.trade-left-action {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.trade-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.bitcoin-icon {
+    background: #f59e0b;
+    /* Bitcoin Orange */
+    color: white;
+}
+
+.trade-main-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.market-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.trade-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.outcome-badge {
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.outcome-up {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+}
+
+.outcome-down {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--accent-red);
+}
+
+.shares-text {
+    font-size: 0.9rem;
+}
+
+.trade-right-financials {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+}
+
+.total-value {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.time-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.time-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.time-link a:hover {
+    color: var(--accent-blue);
+}
+
+.position-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    animation: slideDown 0.3s ease forwards;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pos-market {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.pos-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.pos-shares {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.pos-avg {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.pos-value {
+    text-align: right;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-green);
+}

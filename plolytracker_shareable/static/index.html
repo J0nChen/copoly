@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Live Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="pulse-dot"></span>
+                <h1>PolyTracker <span class="badge">LIVE</span></h1>
+            </div>
+            <div class="search-container">
+                <input type="text" id="address-input" placeholder="Enter Polygon/Polymarket Address (0x...)">
+                <button id="track-btn">Track</button>
+            </div>
+        </header>
+
+        <div class="status-bar" id="status-bar">
+            Waiting for connection...
+        </div>
+
+        <main class="dashboard-grid">
+            <div class="feed-column">
+                <div class="trades-header">
+                    <h2 style="display:flex; align-items:center;">
+                        <button id="back-btn"
+                            style="display:none; background: transparent; border: 1px solid var(--card-border); color: var(--text-muted); padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; margin-right: 10px; cursor: pointer;">←
+                            Back</button>
+                        <span id="feed-title">Live Feed</span>
+                    </h2>
+                    <div class="stats">
+                        <span id="trade-count">0</span> trades tracked
+                    </div>
+                </div>
+                <div id="trades-container" class="trades-container">
+                    <div class="empty-state">No trades tracked yet. Enter an address to start.</div>
+                </div>
+            </div>
+
+            <div class="positions-column">
+                <div class="split-pane">
+                    <div class="trades-header">
+                        <h2>Active Positions</h2>
+                    </div>
+                    <div id="positions-container" class="positions-container">
+                        <div class="empty-state">No active positions from this session yet.</div>
+                    </div>
+                </div>
+                <div class="split-pane">
+                    <div class="trades-header">
+                        <h2>Closed Positions</h2>
+                    </div>
+                    <div id="closed-container" class="positions-container outline-pane">
+                        <div class="empty-state">No closed positions yet.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
